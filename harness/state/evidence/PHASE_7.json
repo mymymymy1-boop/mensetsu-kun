@@ -1,0 +1,25 @@
+{
+  "task_id": "PHASE_7",
+  "ts": "2026-06-11T06:32:44.714751+00:00",
+  "input_ref": "harness/state/evidence/PHASE_7.input.json",
+  "checks": {
+    "git_diff": {
+      "result": "PASS",
+      "detail": "max(mtime)=1781159356 >= started=1781124900 は True"
+    },
+    "build_exec": {
+      "result": "PASS",
+      "detail": "build: exit=0 cmd='npm run build' out=> mensetsu-kun@1.0.0 build\n> tsc --noEmit && vite build\n\n\u001b[36mvite v5.4.21 \u001b[32mbuilding for production...\u001b[36m\u001b[39m\ntransforming...\n\u001b[32m✓\u001b[39m 54 modules transformed.\nrendering chunks...\ncomputing g"
+    },
+    "test_exec": {
+      "result": "PASS",
+      "detail": "test: exit=0 cmd='npm test' out=> mensetsu-kun@1.0.0 test\n> vitest run\n\n\n\u001b[1m\u001b[7m\u001b[36m RUN \u001b[39m\u001b[27m\u001b[22m \u001b[36mv2.1.9 \u001b[39m\u001b[90mC:/dev/mensetsu\u001b[39m\n\n \u001b[32m✓\u001b[39m tests/unit/settings.test.ts \u001b[2m(\u001b[22m\u001b[2m5 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[90"
+    },
+    "file_existence": {
+      "result": "PASS",
+      "detail": "全件実在"
+    }
+  },
+  "gate": "PASS",
+  "transcript_claim": "Phase7 verify"
+}

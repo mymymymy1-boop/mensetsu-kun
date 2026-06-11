@@ -1,0 +1,18 @@
+{
+  "task_id": "PHASE_7",
+  "task_type": "code",
+  "task_started_at": "2026-06-11T05:55:00",
+  "changed_paths": ["src/domain/scoring.ts", "src/domain/selector.ts", "src/data/questions.ts", "src/App.tsx"],
+  "expected_paths": [
+    "src/domain/scoring.ts",
+    "src/domain/selector.ts",
+    "src/domain/feedback.ts",
+    "src/data/questions.ts",
+    "src/audio/audioFactory.ts",
+    "src/App.tsx",
+    "tests/unit/scoring.test.ts",
+    "tests/integration/app.test.tsx"
+  ],
+  "commands": { "build": "npm run build", "test": "npm test" },
+  "git_mode": false
+}

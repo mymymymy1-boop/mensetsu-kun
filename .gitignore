@@ -1,0 +1,13 @@
+node_modules/
+dist/
+coverage/
+playwright-report/
+test-results/
+# 秘密情報（コミット禁止）
+.env
+.env.*
+!.env.example
+.elevenlabs-key.txt
+*.key
+*-key.txt
+secrets/
