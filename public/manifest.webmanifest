@@ -1,0 +1,12 @@
+{
+  "name": "メンセツくん",
+  "short_name": "メンセツくん",
+  "description": "小学校受験 子供向け 音声面接対策アプリ",
+  "lang": "ja",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fff3d6",
+  "theme_color": "#ff8a3d"
+}
