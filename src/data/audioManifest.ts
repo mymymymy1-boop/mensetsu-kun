@@ -1,5 +1,5 @@
 // 自動生成ファイル — `npm run gen:tts` で更新される。手動編集しない。
-export const AUDIO_VOICE = "EXAVITQu4vr4xnSDxMaL";
+export const AUDIO_VOICE = "dhGvgIx0X6G3xzSWqOye";
 export const AUDIO_KEYS: ReadonlySet<string> = new Set<string>([
   "04437386",
   "066fdca5",

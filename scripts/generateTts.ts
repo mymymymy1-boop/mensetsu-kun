@@ -17,10 +17,12 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const AUDIO_DIR = path.join(ROOT, 'public', 'audio');
 const MANIFEST = path.join(ROOT, 'src', 'data', 'audioManifest.ts');
 
-// 既定: やさしい女性声 "Sarah"（落ち着いた・子供向け）。ELEVENLABS_VOICE_ID で差し替え可。
-const DEFAULT_VOICE = 'EXAVITQu4vr4xnSDxMaL';
+// 既定: ネイティブ日本語の女性声 "Kana"（若い・おだやか・標準アクセント・子供向け）。
+//   英語圏ボイス(旧Sarah)は日本語が訛るため、ネイティブ日本語ボイスへ変更(2026-06-12)。
+//   ELEVENLABS_VOICE_ID で差し替え可。日本語候補は ElevenLabs Voice Library(language=ja)。
+const DEFAULT_VOICE = 'dhGvgIx0X6G3xzSWqOye';
 const MODEL = process.env.ELEVENLABS_MODEL ?? 'eleven_multilingual_v2';
-const SPEED = Number(process.env.ELEVENLABS_SPEED ?? '0.85'); // ゆっくりめ
+const SPEED = Number(process.env.ELEVENLABS_SPEED ?? '0.92'); // 少しゆっくりめ（若い声なので0.9前後が自然）
 
 function readKey(): string {
   if (process.env.ELEVENLABS_API_KEY) return process.env.ELEVENLABS_API_KEY.trim();
