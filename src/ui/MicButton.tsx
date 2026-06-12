@@ -6,10 +6,12 @@ interface Props {
 }
 
 export function MicButton({ recording, disabled, onToggle }: Props) {
+  // 待機中(録音していない)はやさしく光って弾み、タップを誘導する
+  const cls = recording ? 'mic-btn recording' : 'mic-btn idle';
   return (
     <div>
       <button
-        className={`mic-btn ${recording ? 'recording' : ''}`}
+        className={cls}
         onClick={onToggle}
         disabled={disabled}
         aria-label={recording ? 'おはなしを とめる' : 'おはなしする'}

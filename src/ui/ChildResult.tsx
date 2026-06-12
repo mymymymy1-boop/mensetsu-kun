@@ -10,15 +10,16 @@ interface Props {
 
 export function ChildResult({ items, onAgain, onHome }: Props) {
   const totalStars = items.reduce((a, it) => a + it.score.childFeedback.stars, 0);
-  const maxStars = items.length * 3;
   return (
     <div className="screen">
       <h1 className="title">よく がんばったね！</h1>
-      <div className="stars" aria-label={`あつめた ほし ${totalStars}`}>
-        ⭐ {'★'.repeat(Math.min(totalStars, 20))}
+      {/* 星はアイコンで表示し、折り返して画面外に出さない。数値スコアは子供に見せない(C-EDU-001) */}
+      <div className="stars-wrap feedback-pop" aria-label={`あつめた ほし ${totalStars}こ`}>
+        {Array.from({ length: Math.max(totalStars, 1) }).map((_, i) => (
+          <span key={i}>{i < totalStars ? '⭐' : ''}</span>
+        ))}
       </div>
       <Character emoji="🏆" message={`きょうは ${items.length}もん れんしゅう できたね！はなまる！`} />
-      <p className="small">あつめた ほし: {totalStars} / {maxStars}（おうちのひと むけ）</p>
       <button className="big-btn" onClick={onAgain}>
         🔁 もういちど
       </button>

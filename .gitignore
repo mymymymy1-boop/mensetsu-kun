@@ -11,3 +11,4 @@ test-results/
 *.key
 *-key.txt
 secrets/
+screenshots/

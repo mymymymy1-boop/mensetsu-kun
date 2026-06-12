@@ -16,7 +16,8 @@
 body {
   margin: 0;
   font-family: 'Hiragino Maru Gothic ProN', 'Yu Gothic', 'Meiryo', system-ui, sans-serif;
-  background: var(--bg);
+  background: linear-gradient(180deg, #fff3d6 0%, #ffe9cf 45%, #ffe3ef 100%);
+  background-attachment: fixed;
   color: var(--text);
   -webkit-font-smoothing: antialiased;
 }
@@ -93,13 +94,27 @@ h1.title { font-size: 30px; margin: 6px 0 2px; }
 
 /* マイクボタン */
 .mic-btn {
-  width: 140px; height: 140px; border-radius: 50%;
-  background: var(--pink); color: #fff; border: none; font-size: 56px;
+  width: 150px; height: 150px; border-radius: 50%;
+  background: var(--pink); color: #fff; border: none; font-size: 60px;
   box-shadow: var(--shadow); cursor: pointer; margin: 16px;
+  position: relative;
+}
+/* 待機中は「押してね」と分かるよう、やさしく光って弾む（音声＋視覚で誘導） */
+.mic-btn.idle { animation: micbounce 1.6s ease-in-out infinite; }
+@keyframes micbounce {
+  0%,100% { transform: translateY(0); box-shadow: 0 6px 0 rgba(0,0,0,.12), 0 0 0 0 rgba(255,126,182,.5); }
+  50% { transform: translateY(-7px); box-shadow: 0 13px 0 rgba(0,0,0,.10), 0 0 0 16px rgba(255,126,182,0); }
 }
 .mic-btn.recording { background: #ff4d6d; animation: pulse 1s ease-in-out infinite; }
 @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.08)} }
-.mic-label { font-size: 20px; color: var(--muted); }
+.mic-label { font-size: 20px; color: var(--muted); font-weight: 700; }
+
+/* 進捗ドット（子供にも分かる視覚進捗） */
+.progress-dots { display: flex; justify-content: center; gap: 10px; margin: 8px 0 2px; }
+.progress-dots .dot { width: 16px; height: 16px; border-radius: 50%; background: #f0d9be; transition: transform .2s; }
+.progress-dots .dot.done { background: var(--star); }
+.progress-dots .dot.current { background: var(--primary); transform: scale(1.35); }
+.progress-text { font-size: 13px; color: var(--muted); margin: 0 0 6px; }
 
 /* 星 */
 .stars { font-size: 56px; letter-spacing: 8px; color: var(--star); margin: 10px; }
@@ -129,3 +144,25 @@ h1.title { font-size: 30px; margin: 6px 0 2px; }
 .row { margin: 10px 0; }
 .small { font-size: 13px; color: var(--muted); }
 .progress { font-size: 16px; color: var(--muted); margin: 6px; }
+
+/* 学校カードの色分け（字が読めない子も区別できるよう） */
+.school-card { transition: transform .06s; }
+.school-card:nth-child(1) { border-color: #ffd0a6; background: #fff6ee; }
+.school-card:nth-child(2) { border-color: #bfe3ff; background: #f0f8ff; }
+.school-card:nth-child(3) { border-color: #c9eccc; background: #f2fbf2; }
+.school-card:nth-child(4) { border-color: #e2cdf5; background: #f9f2ff; }
+.school-card:nth-child(5) { border-color: #ffe39e; background: #fffbf0; }
+.school-card:nth-child(6) { border-color: #ffc7d9; background: #fff3f7; }
+
+/* 子供の結果：星は折り返して画面外に出さない */
+.stars-wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; max-width: 360px; margin: 10px auto; font-size: 40px; line-height: 1.1; color: var(--star); }
+
+/* お祝い演出 */
+.feedback-pop { animation: pop .45s cubic-bezier(.2,1.4,.4,1); }
+@keyframes pop { 0%{transform:scale(.4); opacity:0} 100%{transform:scale(1); opacity:1} }
+.stars.big { font-size: 64px; }
+.stars.big .on { animation: starin .5s ease both; display: inline-block; }
+.stars.big .on:nth-child(2) { animation-delay: .15s; }
+.stars.big .on:nth-child(3) { animation-delay: .3s; }
+@keyframes starin { 0%{transform:scale(0) rotate(-40deg); opacity:0} 100%{transform:scale(1) rotate(0); opacity:1} }
+.tally { font-size: 16px; color: var(--primary-dark); font-weight: 700; margin: 4px; }

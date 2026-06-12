@@ -110,16 +110,20 @@ export function Quiz({ questions, tts, recorder, stt, ttsRate, recordingSupporte
 
   if (phase === 'feedback' && lastItem) {
     const fb = lastItem.score.childFeedback;
+    const collected = items.reduce((a, it) => a + it.score.childFeedback.stars, 0);
     return (
       <div className="screen">
-        <div className="stars" aria-label={`ほし ${fb.stars}つ`}>
+        <div className="stars big feedback-pop" aria-label={`ほし ${fb.stars}つ`}>
           {[0, 1, 2].map((i) => (
-            <span key={i} className={i < fb.stars ? '' : 'off'}>
+            <span key={i} className={i < fb.stars ? 'on' : 'off'}>
               ★
             </span>
           ))}
         </div>
         <Character emoji={fb.stars >= 2 ? '🎉' : '🐥'} message={fb.praise} />
+        <p className="tally" aria-hidden>
+          これまで {'⭐'.repeat(Math.min(collected, 15))}
+        </p>
         <button className="big-btn" onClick={next}>
           {index + 1 >= questions.length ? '🏁 おわり' : '➡ つぎへ'}
         </button>
@@ -132,7 +136,15 @@ export function Quiz({ questions, tts, recorder, stt, ttsRate, recordingSupporte
 
   return (
     <div className="screen">
-      <p className="progress">
+      <div className="progress-dots" aria-hidden>
+        {questions.map((q, i) => (
+          <span
+            key={q.id}
+            className={`dot ${i < index ? 'done' : i === index ? 'current' : ''}`}
+          />
+        ))}
+      </div>
+      <p className="progress-text">
         {index + 1} / {questions.length}もん
       </p>
       <Character emoji="🐥" message={current.text} speaking={speaking} />
