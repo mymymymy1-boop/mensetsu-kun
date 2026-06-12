@@ -7,7 +7,7 @@
 // 最初のタップ時の speak（学校名読み上げ）でこの単一要素が解錠され、以降の出題が鳴る。
 import type { TtsPort } from './types';
 import { textKey } from './textKey';
-import { AUDIO_KEYS } from '../data/audioManifest';
+import { AUDIO_KEYS, AUDIO_VOICE } from '../data/audioManifest';
 
 export class PrerecordedTts implements TtsPort {
   private audio: HTMLAudioElement | null = null;
@@ -16,6 +16,9 @@ export class PrerecordedTts implements TtsPort {
     private fallback: TtsPort,
     private baseUrl: string = (typeof import.meta !== 'undefined' && import.meta.env?.BASE_URL) || '/',
     private keys: ReadonlySet<string> = AUDIO_KEYS,
+    // 声を変えるとファイル名は同じでも内容が変わるため、声IDをクエリに付けて
+    // ブラウザ/PWAのキャッシュを確実に切り替える（古い声が残るのを防ぐ）。
+    private version: string = AUDIO_VOICE,
   ) {}
 
   private el(): HTMLAudioElement | null {
@@ -30,7 +33,8 @@ export class PrerecordedTts implements TtsPort {
     const audio = this.el();
     if (!audio) return this.fallback.speak(text, opts);
     return new Promise<void>((resolve) => {
-      const url = `${this.baseUrl}audio/${key}.mp3`.replace(/\/\/audio/, '/audio');
+      const v = this.version ? `?v=${encodeURIComponent(this.version)}` : '';
+      const url = `${this.baseUrl}audio/${key}.mp3`.replace(/\/\/audio/, '/audio') + v;
       const done = () => {
         audio.onended = null;
         audio.onerror = null;
