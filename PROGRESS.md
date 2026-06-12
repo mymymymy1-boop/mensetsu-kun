@@ -15,7 +15,7 @@
 | 5 レビュー・GO判定 | REVIEW | ✅GO | harness/review-log.md / finding_ledger.md |
 | 6/6b 実装 | IMPL | ✅完了 | src/ tests/ TASKS.md（T-001〜T-011 done） |
 | 7 検証 | VERIFY | ✅完了 | 全ゲート緑（下記DoD） |
-| 8 本番移行 | - | ⏸ 保留（個別承認必須・人ゼロ自動化しない） | dist/（ビルド済み） |
+| 8 本番移行 | DEPLOY | ✅公開（ユーザー承認済み・2026-06-12） | GitHub Pages https://mymymymy1-boop.github.io/mensetsu-kun/ |
 
 ## Definition of Done（Phase 7 検証結果・2026-06-11）
 | ゲート | 結果 |
@@ -34,7 +34,8 @@
 - 2026-06-11: 外部APIキー未設定 → 有料リサーチ外部パイプライン不可。Claude Code内蔵WebSearch/WebFetch+並列サブエージェントで代替（外部課金¥0）。
 - 2026-06-11: 形式=Webアプリ（Web Speech API使用・キー不要）。子供の音声は既定で外部保存しない方針。
 - 2026-06-11(追加): TTSの機械音改善要望 → ElevenLabs女性声(Sarah/speed0.85)を**事前生成方式**で採用。46音声をビルド時生成しpublic/audioに同梱。ランタイムはキー不要・課金なし・オフライン維持。Web Speechはフォールバックに降格。全ゲート再緑(65テスト/E2E4/build/slop)。
-- 2026-06-12: 続き作業①質問拡充(29→58問・出典/信頼度/レベル全付与・音声75本に)②UI/UX改善(進捗ドット/マイク誘導アニメ/グラデ背景/学校カード色分け/結果画面の星折り返し修正・子供画面から数値除去/お祝い演出)。全ゲート再緑(65テスト/E2E4/coverage98.6%/slop CLEAN)。次=③本番公開(要承認)。
+- 2026-06-12: 続き作業①質問拡充(29→58問・出典/信頼度/レベル全付与・音声75本に)②UI/UX改善(進捗ドット/マイク誘導アニメ/グラデ背景/学校カード色分け/結果画面の星折り返し修正・子供画面から数値除去/お祝い演出)。全ゲート再緑(65テスト/E2E4/coverage98.6%/slop CLEAN)。
+- 2026-06-12: ③本番公開(ユーザー個別承認済み)。GitHub Pages公開。リポジトリ https://github.com/mymymymy1-boop/mensetsu-kun (public)。サイト https://mymymymy1-boop.github.io/mensetsu-kun/ 。GitHub Actions(.github/workflows/deploy.yml)でmain push毎に自動ビルド&デプロイ。ライブ検証OK(index/JS/音声200・実ブラウザ全フロー成功)。
 
 ## 残課題 / リスク
 - 子供(5〜6歳)発話のSTT精度 → 採点は自動＋保護者補正のハイブリッドで吸収

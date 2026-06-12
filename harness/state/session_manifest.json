@@ -3,16 +3,18 @@
   "skill_version": "2.2",
   "build_target": "私立小学校受験の子供向け音声面接対策アプリ（慶応横浜初等部・慶応幼稚舎・桐蔭学園小・森村学園小の4校対応、音声で質問提示→子供が音声回答→聞き取り→採点）",
   "automation_mode": "full_auto",
-  "current_phase": "IMPL",
+  "current_phase": "DEPLOY",
   "started_at": "2026-06-11T05:55:00.342574+00:00",
-  "updated_at": "2026-06-12T01:20:20.094704+00:00",
+  "updated_at": "2026-06-12T01:44:10.261068+00:00",
   "transitions": [
     2,
     3,
     4,
     5,
     6,
-    7
+    7,
+    8,
+    9
   ],
   "gate_results": {}
 }
